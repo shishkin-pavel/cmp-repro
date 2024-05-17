@@ -15,6 +15,15 @@ import androidx.compose.ui.Modifier
 //import inittest.composeapp.generated.resources.Res
 //import inittest.composeapp.generated.resources.compose_multiplatform
 
+import org.testkotlin2.libB.LibBClass
+import org.testkotlin2.libB.LibBClass2
+
+
+class TC {
+    val l = LibBClass()
+    val b = LibBClass2()
+}
+
 //@OptIn(ExperimentalResourceApi::class)
 @Composable
 //@Preview

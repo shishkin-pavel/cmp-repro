@@ -42,7 +42,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
-            implementation(project(":libA"))
+//            implementation(project(":libA"))
             implementation("org.testkotlin2.libA:libA:1.0.0-SNAPSHOT")
         }
     }

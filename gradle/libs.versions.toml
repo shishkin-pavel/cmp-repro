@@ -1,15 +1,15 @@
 [versions]
 
-kotlin = "1.9.23"
-agp = "8.3.0"
-compose = "1.6.1"
+kotlin = "1.9.24"
+agp = "8.2.2"
+compose = "0.0.0-shish-stableprop-dev1655"
 androidx-activityCompose = "1.8.2"
-materialKolor = "1.4.4"
+#materialKolor = "1.5.1"
 
 [libraries]
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-materialKolor = { module = "com.materialkolor:material-kolor", version.ref = "materialKolor" }
+#materialKolor = { module = "com.materialkolor:material-kolor", version.ref = "materialKolor" }
 
 [plugins]
 

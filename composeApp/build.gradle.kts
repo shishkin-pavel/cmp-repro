@@ -51,7 +51,7 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
-                implementation(libs.materialKolor)
+//                implementation(libs.materialKolor)
             }
         }
 

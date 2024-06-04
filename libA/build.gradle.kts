@@ -5,9 +5,10 @@ plugins {
     id("maven-publish")
     id("com.android.library")
     alias(libs.plugins.jetbrainsCompose)
-//    alias(libs.plugins.jetbrainsCompose.compiler)
+    alias(libs.plugins.compose.compiler)
 }
 
+version = "1.0.0-SNAPSHOT"
 
 kotlin {
     androidTarget {

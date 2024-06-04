@@ -5,7 +5,7 @@ plugins {
     id("maven-publish")
     id("com.android.library")
     alias(libs.plugins.jetbrainsCompose)
-//    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose.compiler)
 }
 
 

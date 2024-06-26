@@ -11,10 +11,13 @@ androidx-espresso-core = "3.5.1"
 androidx-material = "1.11.0"
 androidx-test-junit = "1.1.5"
 compose = "1.6.6"
-compose-plugin = "1.6.10-rc03"
+#compose-plugin = "1.6.10-rc03"
 #compose-plugin = "0.0.0-shish-stableprop-dev1655"
+compose-plugin = "24.6.7"
 junit = "4.13.2"
-kotlin = "2.0.0"
+#kotlin = "2.0.0"
+kotlin = "2.0.255-SNAPSHOT"
+libA = "1.0.0-SNAPSHOT"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -27,6 +30,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+libA = { module = "org.testkotlin2.libA:libA", version.ref = "libA" }
 #compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 #compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 

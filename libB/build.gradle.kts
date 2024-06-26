@@ -43,14 +43,14 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
 //            implementation(project(":libA"))
-            implementation("org.testkotlin2.libA:libA:1.0.0-SNAPSHOT")
+//            implementation(libs.libA)
         }
     }
 }
 
 android {
     compileSdk = 34
-    namespace = "org.jetbrains.libA"
+    namespace = "org.jetbrains.libB"
     defaultConfig {
         minSdk = 21
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

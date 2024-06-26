@@ -19,10 +19,10 @@ import org.testkotlin2.libB.LibBClass
 import org.testkotlin2.libB.LibBClass2
 
 
-class TC {
-    val l = LibBClass()
-    val b = LibBClass2()
-}
+//class TC {
+//    val l = LibBClass()
+//    val b = LibBClass2()
+//}
 
 //@OptIn(ExperimentalResourceApi::class)
 @Composable

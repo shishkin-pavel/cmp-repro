@@ -1,4 +1,4 @@
-package com.simple.example
+package org.example.project
 
 import platform.UIKit.UIDevice
 

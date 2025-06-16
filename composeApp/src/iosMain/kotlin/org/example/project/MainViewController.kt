@@ -1,4 +1,4 @@
-package com.simple.example
+package org.example.project
 
 import androidx.compose.ui.window.ComposeUIViewController
 

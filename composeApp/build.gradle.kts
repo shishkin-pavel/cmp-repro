@@ -53,9 +53,10 @@ kotlin {
         binaries.executable()
     }
 
-//    js() {
-//        browser()
-//    }
+    js {
+        browser()
+        binaries.executable()
+    }
 
     sourceSets {
         val desktopMain by getting
@@ -73,7 +74,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(project(":lib"))
+            implementation(project(":libA"))
+            implementation(project(":libB"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

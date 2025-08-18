@@ -22,7 +22,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "lib"
+            baseName = "libB"
             isStatic = true
         }
     }
@@ -36,7 +36,7 @@ kotlin {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
             commonWebpackConfig {
-                outputFileName = "composeApp.js"
+                outputFileName = "libB.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
                     static = (static ?: mutableListOf()).apply {
                         // Serve sources to debug inside browser
@@ -46,7 +46,12 @@ kotlin {
                 }
             }
         }
-        binaries.executable()
+        binaries.library()
+    }
+
+    js {
+        browser()
+        binaries.library()
     }
     
     sourceSets {
@@ -56,17 +61,18 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.material3)
+//                implementation(project("libA"))
             }
         }
     }
 }
 
 android {
-    namespace = "org.example.project.lib"
+    namespace = "org.example.project.libB"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
 //    defaultConfig {
-//        applicationId = "org.example.project.lib"
+//        applicationId = "org.example.project.libB"
 //        minSdk = libs.versions.android.minSdk.get().toInt()
 //        targetSdk = libs.versions.android.targetSdk.get().toInt()
 //        versionCode = 1

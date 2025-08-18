@@ -1,9 +1,9 @@
-package org.example.project.lib
+package org.example.project.libB
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun hello(any: String = "world") {
-    Text("hello $any")
+fun foo(any: String = "world") {
+    Text("foo $any")
 }

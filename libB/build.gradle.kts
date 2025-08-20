@@ -16,22 +16,22 @@ kotlin {
         }
     }
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "libB"
-            isStatic = true
-        }
-    }
-
-    jvm("desktop")
+//    listOf(
+//        iosX64(),
+//        iosArm64(),
+//        iosSimulatorArm64()
+//    ).forEach { iosTarget ->
+//        iosTarget.binaries.framework {
+//            baseName = "libB"
+//            isStatic = true
+//        }
+//    }
+//
+//    jvm("desktop")
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        outputModuleName = "composeApp"
+        outputModuleName = "libB"
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path

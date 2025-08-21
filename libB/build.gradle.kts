@@ -16,18 +16,18 @@ kotlin {
         }
     }
 
-//    listOf(
-//        iosX64(),
-//        iosArm64(),
-//        iosSimulatorArm64()
-//    ).forEach { iosTarget ->
-//        iosTarget.binaries.framework {
-//            baseName = "libB"
-//            isStatic = true
-//        }
-//    }
-//
-//    jvm("desktop")
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "libB"
+            isStatic = true
+        }
+    }
+
+    jvm()
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {

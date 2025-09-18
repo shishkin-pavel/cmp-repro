@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import org.gradle.util.VersionNumber
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -34,12 +35,12 @@ kotlin {
     
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        outputModuleName = "composeApp"
+        outputModuleName = "cmp-repro"
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
             commonWebpackConfig {
-                outputFileName = "composeApp.js"
+                outputFileName = "cmp-repro.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
                     static = (static ?: mutableListOf()).apply {
                         // Serve sources to debug inside browser
@@ -53,7 +54,20 @@ kotlin {
     }
 
     js {
-        browser()
+        browser {
+            val rootDirPath = project.rootDir.path
+            val projectDirPath = project.projectDir.path
+            commonWebpackConfig {
+                outputFileName = "cmp-repro.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        // Serve sources to debug inside browser
+                        add(rootDirPath)
+                        add(projectDirPath)
+                    }
+                }
+            }
+        }
         binaries.executable()
     }
 
@@ -71,16 +85,30 @@ kotlin {
             implementation(compose.foundation)
 //            implementation(compose.material3)
             implementation(compose.ui)
-            implementation(compose.components.resources)
+//            implementation(compose.components.resources)
 //            implementation(project(":libA"))
 //            implementation(project(":libB"))
 
-//            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta05")
-            implementation("org.jetbrains.compose.material3:material3:1.9.0-beta03")
-            implementation("org.jetbrains.compose.material:material-icons-core:1.7.3")
+//            implementation(libs.navigation.compose)
+//            implementation(libs.material3)
+//            implementation(libs.material.icons.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+
+        val kotlinVer = libs.versions.kotlin.get()
+        if (VersionNumber.parse(kotlinVer) < VersionNumber.parse("2.2.20")) {
+            applyDefaultHierarchyTemplate()
+            val webMain by creating {
+                dependsOn(commonMain.get())
+            }
+            val jsMain by getting {
+                dependsOn(webMain)
+            }
+            val wasmJsMain by getting {
+                dependsOn(webMain)
+            }
         }
     }
 }

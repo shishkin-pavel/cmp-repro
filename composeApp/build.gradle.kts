@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -21,7 +23,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -36,38 +37,12 @@ kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         outputModuleName = "cmp-repro"
-        browser {
-            val rootDirPath = project.rootDir.path
-            val projectDirPath = project.projectDir.path
-            commonWebpackConfig {
-                outputFileName = "cmp-repro.js"
-                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                    static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
-                        add(rootDirPath)
-                        add(projectDirPath)
-                    }
-                }
-            }
-        }
+        browser()
         binaries.executable()
     }
 
     js {
-        browser {
-            val rootDirPath = project.rootDir.path
-            val projectDirPath = project.projectDir.path
-            commonWebpackConfig {
-                outputFileName = "cmp-repro.js"
-                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                    static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
-                        add(rootDirPath)
-                        add(projectDirPath)
-                    }
-                }
-            }
-        }
+        browser()
         binaries.executable()
     }
 
@@ -81,13 +56,14 @@ kotlin {
         }
 
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-//            implementation(compose.material3)
-            implementation(compose.ui)
-//            implementation(compose.components.resources)
 //            implementation(project(":libA"))
 //            implementation(project(":libB"))
+
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+//            implementation(compose.ui)
+//            implementation(compose.material3)
+//            implementation(compose.components.resources)
 
 //            implementation(libs.navigation.compose)
 //            implementation(libs.material3)

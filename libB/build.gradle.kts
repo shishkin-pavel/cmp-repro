@@ -7,7 +7,11 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.androidLibrary)
+    `maven-publish`
 }
+
+group = "org.example.project.libB"
+version = "0.1.0-SNAPSHOT"
 
 kotlin {
     androidTarget {

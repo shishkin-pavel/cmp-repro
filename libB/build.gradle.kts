@@ -65,7 +65,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.material3)
-//                implementation(project("libA"))
+                implementation("org.example.project.libC:KotlinProject:0.1.0-SNAPSHOT")
             }
         }
     }

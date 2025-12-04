@@ -1,12 +1,18 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.androidLibrary)
+    `maven-publish`
 }
+
+group = "org.example.project.libC"
+version = "0.1.0-SNAPSHOT"
+
 
 kotlin {
     androidTarget {
@@ -16,11 +22,12 @@ kotlin {
     }
 
     listOf(
+        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "libA"
+            baseName = "libC"
             isStatic = true
         }
     }
@@ -29,7 +36,21 @@ kotlin {
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        browser()
+        outputModuleName = "libC"
+        browser {
+            val rootDirPath = project.rootDir.path
+            val projectDirPath = project.projectDir.path
+            commonWebpackConfig {
+                outputFileName = "libC.js"
+                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    static = (static ?: mutableListOf()).apply {
+                        // Serve sources to debug inside browser
+                        add(rootDirPath)
+                        add(projectDirPath)
+                    }
+                }
+            }
+        }
         binaries.library()
     }
 
@@ -45,18 +66,18 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.material3)
-                implementation("org.example.project.libB:KotlinProject:0.1.0-SNAPSHOT")
+//                implementation(project("libA"))
             }
         }
     }
 }
 
 android {
-    namespace = "org.example.project.libA"
+    namespace = "org.example.project.libC"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
 //    defaultConfig {
-//        applicationId = "org.example.project.libA"
+//        applicationId = "org.example.project.libC"
 //        minSdk = libs.versions.android.minSdk.get().toInt()
 //        targetSdk = libs.versions.android.targetSdk.get().toInt()
 //        versionCode = 1

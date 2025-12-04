@@ -43,8 +43,6 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.ui)
-                implementation(compose.material3)
                 implementation("org.example.project.libB:KotlinProject:0.1.0-SNAPSHOT")
             }
         }

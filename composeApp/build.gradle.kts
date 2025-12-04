@@ -57,8 +57,6 @@ kotlin {
 
         commonMain.dependencies {
             implementation(project(":libA"))
-            implementation("org.example.project.libB:KotlinProject:0.1.0-SNAPSHOT")
-//            implementation(project(":libB"))
 
             implementation(compose.runtime)
             implementation(compose.foundation)

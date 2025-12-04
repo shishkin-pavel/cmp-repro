@@ -35,21 +35,7 @@ kotlin {
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        outputModuleName = "libB"
-        browser {
-            val rootDirPath = project.rootDir.path
-            val projectDirPath = project.projectDir.path
-            commonWebpackConfig {
-                outputFileName = "libB.js"
-                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-                    static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
-                        add(rootDirPath)
-                        add(projectDirPath)
-                    }
-                }
-            }
-        }
+        browser()
         binaries.library()
     }
 
@@ -65,7 +51,6 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.ui)
                 implementation(compose.material3)
-                implementation("org.example.project.libC:KotlinProject:0.1.0-SNAPSHOT")
             }
         }
     }

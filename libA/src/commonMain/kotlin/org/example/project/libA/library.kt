@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import org.example.project.libB.foo
 
 @Composable
-fun hello(any: String = "lib A") {
-    BasicText("hello from $any")
+fun hello(from: String = "from lib A") {
+    BasicText("libA.hello from $from")
     foo("lib A")
 }
